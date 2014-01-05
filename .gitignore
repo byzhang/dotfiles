@@ -6,10 +6,10 @@ vim/view
 vim/.netrwhist
 vim/tmp
 vim/spell
-vim/after/.vimrc.after
-vim/.vundles.local
 vim/bundle
 vim/sessions
+vim/vam
+vim/vim-addons
 .netrwhist
 bin/subl
 tags

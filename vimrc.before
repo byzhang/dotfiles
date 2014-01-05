@@ -1,0 +1,103 @@
+let mapleader = ","
+
+" vim-clang
+" let g:clang_auto_select=0
+" let g:clang_complete_auto=0
+" let g:clang_complete_copen=1
+" let g:clang_hl_errors=1
+" let g:clang_periodic_quickfix=0
+" let g:clang_snippets=1
+" let g:clang_snippets_engine="ultisnips"
+" let g:clang_trailing_placeholder=1
+" let g:clang_conceal_snippets=1
+" let g:clang_exec="clang"
+" let g:clang_user_options="-std=c++11"
+" let g:BTW_compilation_dir="build"
+" let g:clang_auto_user_options="path, compile_commands.json"
+" let g:clang_use_library=1
+" let g:clang_sort_algo="priority"
+" let g:clang_complete_macros=1
+" let g:clang_complete_patterns=1
+
+fun SetupVAM()
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  let g:vim_addon_manager.debug_activation = 1
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+                \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+  endif
+  " call vam#ActivateAddons(["vim-clang"], {'auto_install' : 1})
+  " call vam#ActivateAddons(["clang_complete"], {'auto_install' : 1})
+endfun
+call SetupVAM()
+
+" easytag
+" let g:loaded_easytags = 1
+set tags=./.tags;,~/.vim/tags/*,~/.vimtags
+let g:easytags_dynamic_files = 1
+let g:easytags_by_filetype = '~/.vim/tags'
+let g:easytags_include_members = 1
+
+" pyref
+let g:pyref_python = '/usr/share/doc/python/html'
+
+" python
+let g:syntastic_python_checkers=['forsted', 'pylama']
+let g:syntastic_python_pylama_args='--ignore=E501'
+
+" turn off autotag
+" let g:autotag_vim_version_sourced=1
+
+" completion
+" let g:ycm_filetype_specific_completion_to_disable = {'c': 1, 'cpp': 1}
+let g:ycm_confirm_extra_conf = 0
+" let g:ycm_filetype_blacklist = {'cpp': 1, 'c': 1}
+
+let g:assist_csearch="/usr/local/bin/csearch"
+let g:assist_cindex="/usr/local/bin/cindex"
+
+let g:yankring_v_key=''
+let g:yankring_del_v_key=''
+
+" auto close
+let delimitMate_autoclose=0
+
+" UltiSnips for YCM
+" let g:UltiSnipsExpandTrigger="<c-l>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+function! g:UltiSnips_Complete()
+    call UltiSnips_ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips_JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+
+" Astyle
+let g:formatprg_args_cpp = "-A14s2"
+
+" Python Jedi
+" let g:jedi#auto_initialization = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#use_splits_not_buffers = "bottom"
+let g:jedi#goto_assignments_command = "<leader>pa"
+let g:jedi#goto_definitions_command = "<leader>p]"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>pu"
+let g:jedi#rename_command = "<leader>pr"
+let g:jedi#show_call_signatures = "1"

@@ -6,3 +6,6 @@
 	path = zsh/prezto
 	url = https://github.com/sorin-ionescu/prezto.git
   ignore = dirty
+[submodule "powerline"]
+	path = powerline
+	url = git@github.com:Lokaltog/powerline.git

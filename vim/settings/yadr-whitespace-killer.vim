@@ -7,6 +7,7 @@ function! <SID>StripTrailingWhitespaces()
     let c = col(".")
     " Do the business:
     %s/\s\+$//e
+    %s#\($\n\s*\)\+\%$##
     " Clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)

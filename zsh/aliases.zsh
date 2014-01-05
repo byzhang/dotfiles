@@ -3,6 +3,7 @@
 # Don't change. The following determines where YADR is installed.
 yadr=$HOME/.yadr
 
+alias tmux='TERM=screen-256color tmux'
 # YADR support
 alias yav='yadr vim-add-plugin'
 alias ydv='yadr vim-delete-plugin'
@@ -20,8 +21,8 @@ alias cdb='cd -'
 
 # Show human friendly numbers and colors
 alias df='df -h'
-alias ll='ls -alGh'
-alias ls='ls -Gh'
+alias ll='ls -alFGh --color'
+alias ls='ls -FGh --color'
 alias du='du -h -d 2'
 
 # show me files matching "ls grep"

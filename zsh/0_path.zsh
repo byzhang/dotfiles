@@ -1,2 +1,5 @@
 # path, the 0 in the filename causes this to load first
-export PATH=$PATH:$HOME/.yadr/bin:$HOME/.yadr/bin/yadr
+export PATH=/opt/local/libexec/gnubin:$PATH:$HOME/.yadr/bin:$HOME/.yadr/bin/yadr
+export PYTHONPATH=$PYTHONPATH:$HOME/src
+export MLPYTHON_DATASET_REPO=$HOME/src/DocNADE/ml_datasets
+# export LD_PRELOAD=/usr/local/lib/libhoard.so
